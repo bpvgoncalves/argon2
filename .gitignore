@@ -5,3 +5,5 @@ src/Makevars
 
 *.o
 *.so
+.Rproj.user
+argon2.Rproj
