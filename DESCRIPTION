@@ -20,7 +20,8 @@ Authors@R: person("Drew", "Schmidt", role=c("aut", "cre"), email="wrathematics@g
 URL: https://github.com/wrathematics/argon2
 BugReports: https://github.com/wrathematics/argon2/issues
 Maintainer: Drew Schmidt <wrathematics@gmail.com>
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
+Encoding: UTF-8
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
