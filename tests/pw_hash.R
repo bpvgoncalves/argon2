@@ -22,3 +22,11 @@ test.hash(hash, pass)
 
 hash = pw_hash(pass, variant="d", iterations=10, memory=4, nthreads=1)
 test.hash(hash, pass)
+
+
+
+hash = pw_hash(pass, variant="id", iterations=5, memory=2, nthreads=1)
+test.hash(hash, pass)
+
+hash = pw_hash(pass, variant="id", iterations=10, memory=4, nthreads=1)
+test.hash(hash, pass)
