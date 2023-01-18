@@ -13,7 +13,7 @@ pw_check(hash, pass)
 \arguments{
 \item{pass}{The (plaintext) password.}
 
-\item{variant}{Choice of algorithm; currently the only supported choices are "i" and "d".}
+\item{variant}{Choice of algorithm; currently the supported choices are "i", "d" and "id".}
 
 \item{iterations}{A time cost. Recommended to be at least 10. Can be any integer from 1 to
 2^31 - 1.}
