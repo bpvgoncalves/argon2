@@ -1,16 +1,16 @@
 /*  Copyright (c) 2016-2017 Drew Schmidt
     All rights reserved.
-    
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
-    
+
     1. Redistributions of source code must retain the above copyright notice,
     this list of conditions and the following disclaimer.
-    
+
     2. Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-    
+
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
     TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
@@ -48,22 +48,27 @@ void secure_wipe_memory(void *v, size_t n);
 
 
 
-static inline int chartype2inttype(const char ctype)
+static inline int chartype2inttype(const char ctype[])
 {
   int itype;
-  
-  switch (ctype)
-  {
-    case 'i':
-      itype = Argon2_i;
-      break;
-    case 'd':
-      itype = Argon2_d;
-      break;
-    default:
-      error(ERR_IMPOSSIBLE);
+
+  if (strlen(ctype) == 2) {
+    itype = Argon2_id;
   }
-  
+  else {
+    switch (ctype[0])
+    {
+      case 'i':
+        itype = Argon2_i;
+        break;
+      case 'd':
+        itype = Argon2_d;
+        break;
+      default:
+        error(ERR_IMPOSSIBLE);
+    }
+  }
+
   return itype;
 }
 
@@ -75,22 +80,22 @@ SEXP R_argon2_hash(SEXP pass_, SEXP type_, SEXP iterations, SEXP space, SEXP nth
   int check;
   const char *pass = CHARPT(pass_, 0);
   const int passlen = strlen(pass);
-  const int type = chartype2inttype(CHARPT(type_, 0)[0]);
-  
+  const int type = chartype2inttype(&CHARPT(type_, 0)[0]);
+
   random_uchars(salt, SALTLEN);
-  
+
   check = argon2_hash(INT(iterations), INT(space), INT(nthreads), pass, passlen,
     salt, SALTLEN, hash, HASHLEN, enco, ENCOLEN, type, VERSION);
-  
+
   CHECKRET(check);
-  
+
   PROTECT(ret = allocVector(STRSXP, 1));
   SET_STRING_ELT(ret, 0, mkChar(enco));
-  
+
   secure_wipe_memory(salt, SALTLEN*sizeof(*salt));
   secure_wipe_memory(hash, HASHLEN*sizeof(*hash));
   secure_wipe_memory(enco, ENCOLEN*sizeof(*enco));
-  
+
   UNPROTECT(1);
   return ret;
 }
@@ -102,14 +107,19 @@ SEXP R_argon2_verify(SEXP hash_, SEXP pass_)
   int check;
   const char *hash = CHARPT(hash_, 0);
   const char *pass = CHARPT(pass_, 0);
-  
-  const char ctype = hash[7];
-  if (strncmp(hash, "$argon2", 7) != 0 || (ctype!='d' && ctype!='i'))
+  int type;
+
+  if (strncmp(hash, "$argon2i$", 9) == 0) {
+    type = Argon2_i;
+  } else if (strncmp(hash, "$argon2d$", 9) == 0) {
+    type = Argon2_d;
+  } else if (strncmp(hash, "$argon2id$", 10) == 0) {
+    type = Argon2_id;
+  } else {
     error("invalid argon2 hash");
-  
-  const int type = chartype2inttype(ctype);
-  
+  }
+
   check = argon2_verify(hash, pass, strlen(pass), type);
-  
+
   return ScalarLogical(check == ARGON2_OK);
 }
