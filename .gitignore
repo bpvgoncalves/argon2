@@ -6,4 +6,6 @@ src/Makevars
 *.o
 *.so
 .Rproj.user
+.Rhistory
 argon2.Rproj
+config.*
