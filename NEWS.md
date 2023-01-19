@@ -4,6 +4,9 @@ Secure Password Hashing
 -----------------------
 
 ### **dev**
+#### Bug fixes
+* Fixed bug on parameter validation for `blake2b` hashing.
+
 #### Miscellaneous
 * Added github actions for testing code coverage and auto package checking.
 * Added new test cases: 100% of the R code (and 75% overall) is executed during the tests. 
