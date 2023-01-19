@@ -5,7 +5,8 @@ Secure Password Hashing
 
 ### **dev**
 #### Miscellaneous
-* Added new test cases. 
+* Added github actions for testing code coverage and auto package checking.
+* Added new test cases: 100% of the R code (and 75% overall) is executed during the tests. 
 
 
 ### **0.5.0**

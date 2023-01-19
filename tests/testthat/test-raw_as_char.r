@@ -21,3 +21,11 @@ test_that("'raw_as_char' produces the right output when spaces are not expected"
   test = raw_as_char(x, upper=TRUE, spaces=FALSE)
   expect_identical(test, toupper(truth))
 })
+
+test_that("error thrown on wrong parameter type", {
+
+  expect_error(raw_as_char("not_a_raw_object", upper=TRUE, spaces=FALSE))
+  expect_error(raw_as_char(x, upper="TRUE", spaces=FALSE))
+  expect_error(raw_as_char(x, upper=TRUE, spaces=NA))
+
+})
