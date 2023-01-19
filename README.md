@@ -1,5 +1,9 @@
 # argon2
 
+  <!-- badges: start -->
+  [![R-CMD-check](https://github.com/bpvgoncalves/argon2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/bpvgoncalves/argon2/actions/workflows/R-CMD-check.yaml)
+  <!-- badges: end -->
+
 * **Version:** 0.5.0
 * **License:** [BSD 2-Clause](https://opensource.org/licenses/BSD-2-Clause)
 * **Project home**: https://github.com/wrathematics/argon2
