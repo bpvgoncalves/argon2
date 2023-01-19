@@ -19,6 +19,7 @@ BugReports: https://github.com/wrathematics/argon2/issues
 Depends:
     R (>= 3.0.0)
 Suggests: 
+    covr,
     testthat (>= 3.0.0)
 ByteCompile: yes
 Config/testthat/edition: 3

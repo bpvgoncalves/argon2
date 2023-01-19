@@ -2,6 +2,8 @@
 
   <!-- badges: start -->
   [![R-CMD-check](https://github.com/bpvgoncalves/argon2/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/bpvgoncalves/argon2/actions/workflows/R-CMD-check.yaml)
+
+  [![Codecov test coverage](https://codecov.io/gh/bpvgoncalves/argon2/branch/master/graph/badge.svg)](https://app.codecov.io/gh/bpvgoncalves/argon2?branch=master)
   <!-- badges: end -->
 
 * **Version:** 0.5.0
