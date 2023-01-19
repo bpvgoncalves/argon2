@@ -3,6 +3,11 @@ Secure Password Hashing
 
 -----------------------
 
+### **dev**
+#### Miscellaneous
+* Added new test cases. 
+
+
 ### **0.5.0**
 #### New features
 * Added 'Argon2_id' variant support.
@@ -26,11 +31,11 @@ Secure Password Hashing
 #### Breaking changes
 * Renamed raw_to_char() to raw_as_char().
 
-#### New features
-* Added Wikipedia link to DESCRIPTION. 
-
 #### Bug fixes
 * Fixed several memory errors flagged by Valgrind. 
+
+#### Miscellaneous
+* Added Wikipedia link to `DESCRIPTION`. 
 
 
 ### **0.1-0**
