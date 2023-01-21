@@ -19,11 +19,9 @@ The hash of the string as a raw vector.
 A 512-bit blake2b hash implementation.
 }
 \examples{
-\dontrun{
 library(argon2)
 blake2b("some string")
-blake2b("another")
-}
+blake2b("another", "with key")
 
 }
 \references{
