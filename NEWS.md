@@ -1,11 +1,10 @@
-# **argon2**
-Secure Password Hashing
+# argon2 (development version)
+#### New features
+* Changed `blake2b` hash function to allow variable length output.
 
------------------------
-
-### **dev**
 #### Miscellaneous
 * Function `raw_as_char`now implemented in R instead of C.
+
 
 ### **0.5.1**
 #### Bug fixes

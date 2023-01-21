@@ -13,7 +13,7 @@ extern SEXP R_gen_nonce(SEXP len_);
 static const R_CallMethodDef CallEntries[] = {
   {"R_argon2_hash", (DL_FUNC) &R_argon2_hash, 5},
   {"R_argon2_verify", (DL_FUNC) &R_argon2_verify, 2},
-  {"R_blake2b", (DL_FUNC) &R_blake2b, 2},
+  {"R_blake2b", (DL_FUNC) &R_blake2b, 3},
   {"R_gen_nonce", (DL_FUNC) &R_gen_nonce, 1},
   {NULL, NULL, 0}
 };
