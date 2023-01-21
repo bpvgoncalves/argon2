@@ -4,7 +4,8 @@ Secure Password Hashing
 -----------------------
 
 ### **dev**
-
+#### Miscellaneous
+* Function `raw_as_char`now implemented in R instead of C.
 
 ### **0.5.1**
 #### Bug fixes
