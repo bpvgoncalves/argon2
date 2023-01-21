@@ -3,7 +3,7 @@ Secure Password Hashing
 
 -----------------------
 
-### **dev**
+### **0.5.1**
 #### Bug fixes
 * Fixed bug on parameter validation for `blake2b` hashing.
 
