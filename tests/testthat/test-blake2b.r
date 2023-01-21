@@ -56,3 +56,11 @@ test_that("Raw vector hashing with 'blake2b'", {
   test = substr(raw_as_char(hash), 1, testlen)
   expect_identical(test, truth)
 })
+
+test_that("error thrown on wrong parameter type", {
+
+  expect_error(blake2b(8888L, key=rawkey))
+  expect_error(blake2b("abcd", key=123))
+  expect_error(blake2b("abcd", key=raw(65)))
+
+})

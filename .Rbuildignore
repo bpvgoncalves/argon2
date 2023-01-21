@@ -6,3 +6,5 @@ src/argon2/NOTES.txt
 LICENSE.md
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.github$
+^codecov\.yml$
