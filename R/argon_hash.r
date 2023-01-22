@@ -55,12 +55,14 @@ argon2_hash <- function(password, nonce=NULL, type="id", iterations=1,
   if (threads > 2^24 - 1)
     stop("argument 'threads' MUST be an integer value from 1 to 2^(24)-1.")
 
-  if (!is.null(nonce) & !is.string(nonce)) {
-    stop("argument 'nonce' MUST be an a character string, or NULL.")
+  if (!is.null(nonce) & !is.string(nonce) & !is.raw(nonce)) {
+    stop("argument 'nonce' MUST be an a character string, a raw vecor, or NULL.")
   } else if (is.null(nonce)) {
     salt <- blake2b(gen_nonce(128), len=16)
-  } else {
+  } else if (is.character(nonce)) {
     salt <- charToRaw(nonce)
+  } else { # must be raw
+    salt <- nonce
   }
 
   hash <- .Call(R_argon2_hasher,

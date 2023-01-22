@@ -11,7 +11,7 @@ test_that("Argon2_i password raw hash works", {
   expect_true(typeof(hash$raw_hash) == "raw")
   expect_true(typeof(hash$salt) == "raw")
   expect_identical(hash,
-                   argon2_hash(pass, rawToChar(hash$salt), type=type, iterations=5, memory=2, threads=2))
+                   argon2_hash(pass, hash$salt, type=type, iterations=5, memory=2, threads=2))
 
   hash <- argon2_hash(pass, nonce, type=type, iterations=5, memory=2, threads=2, len = 32)
   expect_true(class(hash) == "argon2.raw")
@@ -40,7 +40,7 @@ test_that("Argon2_d password raw hash works", {
   expect_true(typeof(hash$raw_hash) == "raw")
   expect_true(typeof(hash$salt) == "raw")
   expect_identical(hash,
-                   argon2_hash(pass, rawToChar(hash$salt), type=type, iterations=5, memory=2, threads=2))
+                   argon2_hash(pass, hash$salt, type=type, iterations=5, memory=2, threads=2))
 
   hash <- argon2_hash(pass, nonce, type=type, iterations=5, memory=2, threads=2, len = 32)
   expect_true(class(hash) == "argon2.raw")
@@ -69,7 +69,7 @@ test_that("Argon2_id password raw hash works", {
   expect_true(typeof(hash$raw_hash) == "raw")
   expect_true(typeof(hash$salt) == "raw")
   expect_identical(hash,
-                   argon2_hash(pass, rawToChar(hash$salt), type=type, iterations=5, memory=2, threads=2))
+                   argon2_hash(pass, hash$salt, type=type, iterations=5, memory=2, threads=2))
 
   hash <- argon2_hash(pass, nonce, type=type, iterations=5, memory=2, threads=2, len = 32)
   expect_true(class(hash) == "argon2.raw")
