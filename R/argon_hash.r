@@ -85,3 +85,16 @@ argon2_hash <- function(password, nonce=NULL, type="id", iterations=1,
   return(out)
 }
 
+#' @export
+print.argon2.raw.hash <- function(x, ...) {
+  if (typeof(x) == "raw") {
+    cat("Argon2 Raw Hash: ", raw_as_char(x), "\n")
+  } else {
+    cat("Argon2 Raw Hash: ", x, "\n")
+  }
+}
+
+#' @export
+print.argon2.raw <- function(x, ...) {
+  print(x$raw_hash)
+}
