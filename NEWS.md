@@ -1,12 +1,14 @@
 # argon2 (development version)
 #### New features
 * Changed `blake2b` hash function to allow variable length output.
+* Added `argon2_hash` function to compute raw hashes for a given plaintext/password. This function 
+accepts all the customization parameters used by the Reference Implementation in C.
 
 #### Miscellaneous
 * Function `raw_as_char`now implemented in R instead of C.
 
 
-### **0.5.1**
+# argon2 0.5.1
 #### Bug fixes
 * Fixed bug on parameter validation for `blake2b` hashing.
 
@@ -15,17 +17,17 @@
 * Added new test cases: 100% of the R code (and 75% overall) is executed during the tests. 
 
 
-### **0.5.0**
+# argon2 0.5.0
 #### New features
 * Added 'Argon2_id' variant support.
 
 
-### **0.4-0**
+# argon2 0.4-0
 #### New features
 * Update argon2 internals to release 20190702.
 
 
-### **0.3-0**
+# argon2 0.3-0
 #### New features
 * Expose argon2 secondary inputs to users. 
 * Changed argument "type" to "variant" in pw_hash().
@@ -34,7 +36,7 @@
 * Fixed a bad error message.
 
 
-### **0.2-0**
+# argon2 0.2-0
 #### Breaking changes
 * Renamed raw_to_char() to raw_as_char().
 
@@ -45,7 +47,7 @@
 * Added Wikipedia link to `DESCRIPTION`. 
 
 
-### **0.1-0**
+# argon2 0.1-0
 #### New features
 * Added pw_hash() and pw_check() 
 * Added blake2b() 
