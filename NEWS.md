@@ -1,4 +1,4 @@
-# argon2 (development version)
+# argon2 0.6.0
 #### New features
 * Changed `blake2b` hash function to allow variable length output.
 * Added `argon2_hash` function to compute raw hashes for a given plaintext/password. This function 
