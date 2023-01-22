@@ -12,7 +12,7 @@
 #' resources, and you are encouraged to do so.
 #'
 #' @details
-#' This uses the argon2 (i or d variety) hash algorithm.  See references for
+#' This uses the argon2 (i, d or id variety) hash algorithm.  See references for
 #' details and implementation source code (also bundled with this package).
 #'
 #' Our binding uses a 512 bit salt with data generated from MT.
@@ -31,17 +31,15 @@
 #' Reference implementation \url{https://github.com/P-H-C/phc-winner-argon2}
 #'
 #' @examples
-#' \dontrun{
 #' library(argon2)
 #'
 #' pass <- "myPassw0rd!"
 #' hash <- pw_hash(pass)
 #' hash # store this
 #'
-#' pw_check(hash, pass)
-#' pw_check(hash, "password")
+#' pw_check(hash, pass)       # Correct password will return TRUE
+#' pw_check(hash, "password") # Incorrect passwords will return FALSE
 #' pw_check(hash, "1234")
-#' }
 #'
 #' @name hashing
 #' @rdname hashing

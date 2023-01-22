@@ -45,23 +45,21 @@ On the other hand, \code{nthreads} is safe to change to fit your available
 resources, and you are encouraged to do so.
 
 
-This uses the argon2 (i or d variety) hash algorithm.  See references for
+This uses the argon2 (i, d or id variety) hash algorithm.  See references for
 details and implementation source code (also bundled with this package).
 
 Our binding uses a 512 bit salt with data generated from MT.
 }
 \examples{
-\dontrun{
 library(argon2)
 
 pass <- "myPassw0rd!"
 hash <- pw_hash(pass)
 hash # store this
 
-pw_check(hash, pass)
-pw_check(hash, "password")
+pw_check(hash, pass)       # Correct password will return TRUE
+pw_check(hash, "password") # Incorrect passwords will return FALSE
 pw_check(hash, "1234")
-}
 
 }
 \references{

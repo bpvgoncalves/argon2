@@ -18,7 +18,7 @@ if test "X${USE_VEC}" = "Xyes"; then
     exit 1
   fi
   CC=`"${R_HOME}/bin/R" CMD config CC`
-  
+
   AC_LANG_PUSH([C])
   AC_CACHE_CHECK([for ${CC} __builtin_cpu_init function],
     [ax_cv_gcc_check_x86_cpu_init],
@@ -29,11 +29,11 @@ if test "X${USE_VEC}" = "Xyes"; then
       [ax_cv_gcc_check_x86_cpu_init=yes],
       [ax_cv_gcc_check_x86_cpu_init=no])])
   AS_IF([test "X$ax_cv_gcc_check_x86_cpu_init" = "Xno"], [CC_IS_GCC="no"], [CC_IS_GCC="yes"])
-  
+
   if test "X${CC_IS_GCC}" = "Xyes"; then
     AX_GCC_X86_CPU_SUPPORTS(avx2, [HAS_AVX2="yes"],[HAS_AVX2="no"])
     AX_GCC_X86_CPU_SUPPORTS(sse2, [HAS_SSE2="yes"],[HAS_SSE2="no"])
-    
+
     if test "X${HAS_AVX2}" = "Xyes"; then
       FILL_IMPL="opt.o"
       ADDL_CFLAGS="-mavx2"

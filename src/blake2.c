@@ -1,16 +1,16 @@
 /*  Copyright (c) 2016-2017 Drew Schmidt
     All rights reserved.
-    
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
-    
+
     1. Redistributions of source code must retain the above copyright notice,
     this list of conditions and the following disclaimer.
-    
+
     2. Redistributions in binary form must reproduce the above copyright
     notice, this list of conditions and the following disclaimer in the
     documentation and/or other materials provided with the distribution.
-    
+
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
     TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
@@ -28,61 +28,63 @@
 #include "common.h"
 #include "argon2/blake2/blake2.h"
 
-#define HASHLEN 64
-
-SEXP R_blake2b(SEXP in_, SEXP key_)
+SEXP R_blake2b(SEXP in_, SEXP key_, SEXP len_)
 {
   SEXP ret;
+  size_t retlen;
   void *in;
   size_t inlen;
   void *key;
   size_t keylen;
-  
+
+
   switch (TYPEOF(in_))
   {
     case STRSXP:
       in = (void*) CHARPT(in_, 0);
       inlen = strlen(in);
       break;
-      
+
     case RAWSXP:
       in = RAW(in_);
       inlen = LENGTH(in_);
       break;
-    
+
     default:
       error(ERR_IMPOSSIBLE);
   }
-  
+
   switch (TYPEOF(key_))
   {
     case NILSXP:
       key = NULL;
       keylen = 0;
       break;
-    
+
     case STRSXP:
       key = (void*) CHARPT(key_, 0);
       keylen = strlen(key);
       break;
-      
+
     case RAWSXP:
       key = RAW(key_);
       keylen = LENGTH(key_);
       break;
-    
+
     default:
       error(ERR_IMPOSSIBLE);
   }
-  
-  if (keylen > HASHLEN)
-    error("'key' must have no more than %d elements\n", HASHLEN);
-  
-  PROTECT(ret = allocVector(RAWSXP, HASHLEN));
+
+  retlen = *INTEGER(len_);
+
+  if (keylen > retlen)
+    error("'key' must have no more than %d elements\n", retlen);
+
+  PROTECT(ret = allocVector(RAWSXP, retlen));
   uchar_t *const hash = RAW(ret);
-  
-  blake2b(hash, HASHLEN, in, inlen, key, keylen);
-  
+
+  blake2b(hash, retlen, in, inlen, key, keylen);
+
   UNPROTECT(1);
   return ret;
 }
