@@ -14,7 +14,8 @@ R_OBJS = \
 	blake2.o \
 	gen_nonce.o \
 	pw_hash.o \
-	argon_hash.o
+	argon2_hash.o \
+	argon2_encode.o
 
 OBJECTS = $(ARGON2_OBJS) $(R_OBJS)
 all: $(SHLIB)

@@ -95,16 +95,20 @@ argon2_encode <- function(password, nonce=NULL, type="id", iterations=1,
 #' TRUE if the password matches, and FALSE otherwise.
 #'
 #' @export
+#' @useDynLib argon2 R_argon2_verify
 #'
 #' @examples
 #'
 #' # Checking 'argon2.encode' object
-#' encoded <- argon2_encode("password", mem = 4)
-#' argon_verify(encoded, "password")
+#' encoded <- argon2_encode("password", memory = 4)
+#' argon2_verify(encoded, "password")
+#' argon2_verify(encoded, "not_the_password")
 #'
 #' # Checking a string
-#' argon2_verify("$argon2id$v=19$m=16384,t=2,p=4$c21hbGxzYWx0$VMLGGh5t7cTbShJgAJP4gw", "password")
-#' argon2_verify("$argon2id$v=19$m=16384,t=2,p=4$c21hbGxzYWx0$VMLGGh5t7cTbShJgAJP4gw", "random string")
+#' argon2_verify("$argon2id$v=19$m=16384,t=2,p=4$c21hbGxzYWx0$VMLGGh5t7cTbShJgAJP4gw",
+#'               "password")
+#' argon2_verify("$argon2id$v=19$m=16384,t=2,p=4$c21hbGxzYWx0$VMLGGh5t7cTbShJgAJP4gw",
+#'               "not_the_password")
 #'
 argon2_verify <- function(encoded_hash, password) {
   if (inherits(encoded_hash, "argon2.encoded"))
