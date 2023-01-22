@@ -1,7 +1,7 @@
 Type: Package
 Package: argon2
 Title: Secure Password Hashing
-Version: 0.5.1.9003
+Version: 0.5.1.9004
 Authors@R: 
     person("Drew", "Schmidt", , "wrathematics@gmail.com", role = c("aut", "cre"))
 Maintainer: Drew Schmidt <wrathematics@gmail.com>
