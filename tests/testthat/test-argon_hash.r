@@ -88,6 +88,17 @@ test_that("Argon2_id password raw hash works", {
   expect_equal(as.character(hash$raw_hash), toupper(known_good))
 })
 
+known_good <- "Argon2 Raw Hash: BB0B90B8A65A72C50815FD2DFE984DB2"
+test_that("Printing works as intended.", {
+  hash <- argon2_hash(pass, nonce, type="id", iterations=2, memory=32, threads=4, len=16)
+
+  expect_identical(utils::capture.output(print(hash)), known_good)
+  expect_identical(print(hash), print(hash$raw_hash))
+
+  hash <- argon2_hash(pass, nonce, type="id", iterations=2, memory=32, threads=4, len=16, as_raw = F)
+  expect_identical(utils::capture.output(print(hash)), known_good)
+  expect_identical(print(hash), print(hash$raw_hash))
+})
 
 test_that("Wrong parameters' circuit breakers work", {
 
