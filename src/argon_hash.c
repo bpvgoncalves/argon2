@@ -27,9 +27,7 @@
 
 
 #include "argon2/argon2.h"
-
 #include "common.h"
-#include "random_uchars.h"
 
 void secure_wipe_memory(void *v, size_t n);
 
@@ -42,8 +40,10 @@ SEXP R_argon2_hasher(SEXP pass_, SEXP nonce_, SEXP type, SEXP iterations,
   const char *pass = CHARPT(pass_, 0);
   const int passlen = strlen(pass);
 
-  const char *salt = CHARPT(nonce_, 0);
-  const int saltlen = strlen(salt);
+  const int saltlen = length(nonce_);
+  uint8_t salt[saltlen];
+  for (size_t i=0; i<saltlen; i++)
+    salt[i] = RAW(nonce_)[i];
 
   size_t hashlen = INT(len);
   uint8_t hash[hashlen];
@@ -73,6 +73,7 @@ SEXP R_argon2_hasher(SEXP pass_, SEXP nonce_, SEXP type, SEXP iterations,
   for (size_t i=0; i<hashlen; i++)
     SET_RAW_ELT(ret, i, hash[i]);
 
+  secure_wipe_memory(salt, saltlen*sizeof(*salt));
   secure_wipe_memory(hash, hashlen*sizeof(*hash));
 
   UNPROTECT(1);

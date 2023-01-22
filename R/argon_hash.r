@@ -87,28 +87,26 @@ argon2_hash <- function(password, nonce=NULL, type="id", iterations=1,
   if (threads > 2^24 - 1)
     stop("argument 'threads' MUST be an integer value from 1 to 2^(24)-1.")
 
-  # TODO: Proper management of nonces
   if (!is.null(nonce) & !is.string(nonce)) {
     stop("argument 'nonce' MUST be an a character string, or NULL.")
   } else if (is.null(nonce)) {
-    salt <- raw_as_char(blake2b(format(Sys.time(), "%Y-%m-%d %H:%M:%OS6"), len=16))
+    salt <- blake2b(gen_nonce(128), len=16)
   } else {
-    salt <- nonce
+    salt <- charToRaw(nonce)
   }
 
-  hash = .Call(R_argon2_hasher,
-               password,
-               salt,
-               as.integer(type),
-               as.integer(iterations),
-               as.integer(1024L*memory),
-               as.integer(threads),
-               as.integer(len))
+  hash <- .Call(R_argon2_hasher,
+                password,
+                salt,
+                as.integer(type),
+                as.integer(iterations),
+                as.integer(1024L*memory),
+                as.integer(threads),
+                as.integer(len))
 
   if (!as_raw) {
     hash <- raw_as_char(hash)
-  } else {
-    salt <- charToRaw(salt)
+    salt <- raw_as_char(salt)
   }
 
   class(hash) <- c("argon2.raw.hash")
