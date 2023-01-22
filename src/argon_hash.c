@@ -1,5 +1,5 @@
 /*  Copyright (c) 2016-2017 Drew Schmidt
- *  Copyright (c) 2023 Bruno Gonçalves
+    Copyright (c) 2023 Bruno Gonçalves
  All rights reserved.
 
  Redistribution and use in source and binary forms, with or without

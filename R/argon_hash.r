@@ -101,11 +101,21 @@ argon2_hash <- function(password, nonce=NULL, type="id", iterations=1,
                salt,
                as.integer(type),
                as.integer(iterations),
-               1024L*as.integer(memory),
+               as.integer(1024L*memory),
                as.integer(threads),
                as.integer(len))
 
-  class(hash) <- c("argon2.raw_hash")
-  return(hash)
+  if (!as_raw) {
+    hash <- raw_as_char(hash)
+  } else {
+    salt <- charToRaw(salt)
+  }
+
+  class(hash) <- c("argon2.raw.hash")
+  class(salt) <- c("argon2.raw.salt")
+
+  out <- list(raw_hash = hash, salt = salt)
+  class(out) <- "argon2.raw"
+  return(out)
 }
 
