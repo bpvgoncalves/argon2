@@ -3,6 +3,9 @@
 * Changed `blake2b` hash function to allow variable length output.
 * Added `argon2_hash` function to compute raw hashes for a given plaintext/password. This function 
 accepts all the customization parameters used by the Reference Implementation in C.
+* Added `argon2_encode` and `argon2_verify` functions to compute encoded hashes for a given 
+plaintext/password. The encoding function accepts all the customization parameters used by the 
+Reference Implementation in C.
 
 #### Miscellaneous
 * Function `raw_as_char`now implemented in R instead of C.
