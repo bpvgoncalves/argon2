@@ -36,7 +36,7 @@ SEXP R_argon2_hasher(SEXP pass_, SEXP nonce_, SEXP type, SEXP iterations,
 
 {
   SEXP ret;
-  int check;
+  int check = -99; // Initialized to 'unknown error'
   const char *pass = CHARPT(pass_, 0);
   const int passlen = strlen(pass);
 
