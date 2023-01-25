@@ -1,5 +1,6 @@
 # argon2 (development version)
 #### New features
+* Added `argon2_kdf` for secure key derivation form a password.
 * Changed 'nonce' argument on `argon2_hash` and `argon2_encode` to allow for different input types.
 
 
