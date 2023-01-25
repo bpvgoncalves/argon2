@@ -19,8 +19,12 @@ argon2_hash(
 \item{password}{The plaintext password to be encoded (maps to parameter `P` on RFC 9106).}
 
 \item{nonce}{The salt to be used for the encoding (maps to parameter `S` on RFC 9106).
-If not provided a random nonce of 16 bytes will be generated. This is the size
-recommended by RFC 9106 for password hashing.}
+Valid arguments are:
+    - NULL (default), a random nonce of 16 bytes will be generated. This is
+    the size recommended by RFC 9106 for password hashing.
+    - Integer, a random nonce with a size equal to the parameter will be
+    generated. Max = 64.
+    - String or Raw vector, will be used directly as nonce.}
 
 \item{type}{Choice of algorithm; currently the supported choices are "i", "d" and "id".
 Defaults to "id".}

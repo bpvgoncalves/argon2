@@ -13,8 +13,12 @@
 #'
 #' @param password    The plaintext password to be encoded (maps to parameter `P` on RFC 9106).
 #' @param nonce       The salt to be used for the encoding (maps to parameter `S` on RFC 9106).
-#'                    If not provided a random nonce of 16 bytes will be generated. This is the size
-#'                    recommended by RFC 9106 for password hashing.
+#'                    Valid arguments are:
+#'                        - NULL (default), a random nonce of 16 bytes will be generated. This is
+#'                        the size recommended by RFC 9106 for password hashing.
+#'                        - Integer, a random nonce with a size equal to the parameter will be
+#'                        generated. Max = 64.
+#'                        - String or Raw vector, will be used directly as nonce.
 #' @param type        Choice of algorithm; currently the supported choices are "i", "d" and "id".
 #'                    Defaults to "id".
 #' @param iterations  A time cost. Can be any integer from 1 to 2^31 - 1. Maps to parameter `t` on
@@ -54,14 +58,20 @@ argon2_encode <- function(password, nonce=NULL, type="id", iterations=1,
   if (threads > 2^24 - 1)
     stop("argument 'threads' MUST be an integer value from 1 to 2^(24)-1.")
 
-  if (!is.null(nonce) & !is.string(nonce) & !is.raw(nonce)) {
-    stop("argument 'nonce' MUST be an a character string, a raw vecor, or NULL.")
-  } else if (is.null(nonce)) {
+  if (is.null(nonce)) {
     salt <- blake2b(gen_nonce(128), len=16)
+  } else if (is.integer(nonce)) {
+    if (nonce > 64) {
+      warning ("nonce value too big. Will use 64 bytes.")
+      nonce <- 64
+    }
+    salt <- blake2b(gen_nonce(128), len=nonce)
   } else if (is.character(nonce)) {
     salt <- charToRaw(nonce)
-  } else { # must be raw
+  } else if (is.raw(nonce)) {
     salt <- nonce
+  } else {
+    stop("invalid type for 'nonce' argument. See documentation.")
   }
 
   hash <- .Call(R_argon2_encoder,

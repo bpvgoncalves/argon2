@@ -6,7 +6,8 @@
   [![Codecov test coverage](https://codecov.io/gh/bpvgoncalves/argon2/branch/master/graph/badge.svg)](https://app.codecov.io/gh/bpvgoncalves/argon2?branch=master)
   <!-- badges: end -->
 
-* **Version:** 0.6.0
+
+* **Version:** 0.7.0
 * **License:** [BSD 2-Clause](https://opensource.org/licenses/BSD-2-Clause)
 * **Project home**: https://github.com/wrathematics/argon2
 * **Bug reports**: https://github.com/wrathematics/argon2/issues
@@ -42,16 +43,23 @@ If you build the package from source, you can enable CPU vectorization optimizat
 library(argon2)
 
 pass <- "myPassw0rd!"
-hash <- pw_hash(pass)
-hash
-## [1] "$argon2i$v=19$m=8192,t=20,p=1$KZrdgD04xYK158QoZUEJgQb0QgayasYvjl98hRXf5C7cCqDr/MPARFdp4HtnrSrpZr70SupTrfGVfovUp81VeA$V8WHHdR7a4S0RTOFDAjJCHIerlIjzsPAuPu0rT2lpnObmNOUhldPIgEqBzxQBF71tyjsEIuuRMdG/b5JN3omiA"
-## attr(,"hashtype")
-## [1] "argon2"
 
-pw_check(hash, pass)
-## [1] TRUE
-pw_check(hash, "password")
-## [1] FALSE
-pw_check(hash, "1234")
-## [1] FALSE
+argon2_hash(pass, len=32)
+Argon2 Raw Hash: AE93DFE62C15D439A575E602CFB58F98B820FA5837040812AEB66E5585972830
+
+enc <- argon2_encode(pass, memory=16, len=32)
+enc
+Argon2 Encoded Hash:
+$argon2id$v=19$m=16384,t=1,p=2$JfXhBolUipd6T8KY7s01xw$yXdjXxEgxIutkruaTvZQHtSl6qpyoEhIh87nspPhKyg
+
+argon2_verify(enc, pass)
+[1] TRUE
+
+argon2_verify(enc, "password")
+[1] FALSE
+
+argon2_verify(enc, "1234")
+[1] FALSE
+
+
 ```

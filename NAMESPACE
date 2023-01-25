@@ -2,10 +2,13 @@
 
 S3method(print,argon2.encoded)
 S3method(print,argon2.encoded.hash)
+S3method(print,argon2.kdf)
+S3method(print,argon2.kdf.key)
 S3method(print,argon2.raw)
 S3method(print,argon2.raw.hash)
 export(argon2_encode)
 export(argon2_hash)
+export(argon2_kdf)
 export(argon2_verify)
 export(blake2b)
 export(gen_nonce)

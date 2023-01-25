@@ -28,6 +28,19 @@ test_that("Argon2_i password raw hash works", {
   expect_true(typeof(hash$raw_hash) == "character")
   expect_true(typeof(hash$salt) == "character")
   expect_equal(as.character(hash$raw_hash), toupper(known_good))
+
+
+  hash <- argon2_hash(pass, 16L, type=type, iterations=5, memory=2, threads=2, len = 32)
+  expect_true(class(hash) == "argon2.raw")
+  expect_true(class(hash$raw_hash) == "argon2.raw.hash")
+  expect_true(typeof(hash$raw_hash) == "raw")
+  expect_equal(length(hash$raw_hash), 32)
+  expect_true(class(hash$salt) == "argon2.raw.salt")
+  expect_true(typeof(hash$salt) == "raw")
+  expect_equal(length(hash$salt), 16)
+  expect_identical(hash,
+                   argon2_hash(pass, hash$salt, type=type, iterations=5, memory=2, threads=2, len = 32))
+
 })
 
 type <- "d"
@@ -57,6 +70,17 @@ test_that("Argon2_d password raw hash works", {
   expect_true(typeof(hash$raw_hash) == "character")
   expect_true(typeof(hash$salt) == "character")
   expect_equal(as.character(hash$raw_hash), toupper(known_good))
+
+  hash <- argon2_hash(pass, 16L, type=type, iterations=5, memory=2, threads=2, len = 32)
+  expect_true(class(hash) == "argon2.raw")
+  expect_true(class(hash$raw_hash) == "argon2.raw.hash")
+  expect_true(typeof(hash$raw_hash) == "raw")
+  expect_equal(length(hash$raw_hash), 32)
+  expect_true(class(hash$salt) == "argon2.raw.salt")
+  expect_true(typeof(hash$salt) == "raw")
+  expect_equal(length(hash$salt), 16)
+  expect_identical(hash,
+                   argon2_hash(pass, hash$salt, type=type, iterations=5, memory=2, threads=2, len = 32))
 })
 
 type <- "id"
@@ -86,6 +110,17 @@ test_that("Argon2_id password raw hash works", {
   expect_true(typeof(hash$raw_hash) == "character")
   expect_true(typeof(hash$salt) == "character")
   expect_equal(as.character(hash$raw_hash), toupper(known_good))
+
+  hash <- argon2_hash(pass, 16L, type=type, iterations=5, memory=2, threads=2, len = 32)
+  expect_true(class(hash) == "argon2.raw")
+  expect_true(class(hash$raw_hash) == "argon2.raw.hash")
+  expect_true(typeof(hash$raw_hash) == "raw")
+  expect_equal(length(hash$raw_hash), 32)
+  expect_true(class(hash$salt) == "argon2.raw.salt")
+  expect_true(typeof(hash$salt) == "raw")
+  expect_equal(length(hash$salt), 16)
+  expect_identical(hash,
+                   argon2_hash(pass, hash$salt, type=type, iterations=5, memory=2, threads=2, len = 32))
 })
 
 known_good <- "Argon2 Raw Hash: BB0B90B8A65A72C50815FD2DFE984DB2"
@@ -113,5 +148,8 @@ test_that("Wrong parameters' circuit breakers work", {
 
   expect_error(argon2_hash(1234, type="i", iterations=1, memory=8, threads=1))
   expect_error(argon2_hash(pass, 1234, type="i", iterations=1, memory=8, threads=1))
+  expect_warning(argon2_hash(pass, 1234L, type="i", iterations=1, memory=8, threads=1))
+  suppressWarnings({hash64 = argon2_hash(pass, 1234L, type="i", iterations=1, memory=8, threads=1)})
+  expect_equal(length(hash64$salt), 64)
 
 })
