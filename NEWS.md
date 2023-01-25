@@ -1,3 +1,5 @@
+# argon2 (development version)
+
 # argon2 0.7.0
 #### New features
 * Added `argon2_kdf` for secure key derivation form a password.
