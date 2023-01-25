@@ -1,3 +1,5 @@
+# argon2 (development version)
+
 # argon2 0.6.0
 #### New features
 * Changed `blake2b` hash function to allow variable length output.
