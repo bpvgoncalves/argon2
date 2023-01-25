@@ -1,4 +1,7 @@
 # argon2 (development version)
+#### New features
+* Changed 'nonce' argument on `argon2_hash` and `argon2_encode` to allow for different input types.
+
 
 # argon2 0.6.0
 #### New features
