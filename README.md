@@ -6,7 +6,7 @@
   [![Codecov test coverage](https://codecov.io/gh/bpvgoncalves/argon2/branch/master/graph/badge.svg)](https://app.codecov.io/gh/bpvgoncalves/argon2?branch=master)
   <!-- badges: end -->
 
-* **Version:** 0.7.0
+* **Version:** 0.7.1
 * **License:** [BSD 2-Clause](https://opensource.org/licenses/BSD-2-Clause)
 * **Project home**: https://github.com/wrathematics/argon2
 * **Bug reports**: https://github.com/wrathematics/argon2/issues
