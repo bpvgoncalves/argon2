@@ -1,3 +1,7 @@
+# argon2 0.7.1
+#### Miscellaneous
+* Trying to fix compilation issues in Windows.
+
 # argon2 0.7.0
 #### New features
 * Added `argon2_kdf` for secure key derivation form a password.
