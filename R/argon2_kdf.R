@@ -10,7 +10,7 @@
 #' @param nonce       The nonce to be used on the calculation. Defaults to a 32-byte random nonce.
 #'
 #' @return
-#' An object of type `argon2.raw` consisting of a list of 2 elements: raw_hash and salt.
+#' An object of type `argon2.key` consisting of a list of 2 elements: key and salt.
 #'
 #' @export
 #' @examples
