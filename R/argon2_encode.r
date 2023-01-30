@@ -67,7 +67,7 @@ argon2_encode <- function(password, nonce=NULL, type="id", iterations=1,
     }
     salt <- blake2b(gen_nonce(128), len=nonce)
   } else if (is.character(nonce)) {
-    salt <- charToRaw(nonce)
+    if(is.hex(nonce)) salt <- char_as_raw(nonce) else salt <- charToRaw(nonce)
   } else if (is.raw(nonce)) {
     salt <- nonce
   } else {
