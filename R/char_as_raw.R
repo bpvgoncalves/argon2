@@ -23,13 +23,9 @@ char_as_raw <- function(string)
   if (!is.string(string))
     stop("argument 'string' must be of character type")
 
-  string <- gsub(" ", "", string, fixed = TRUE) # eliminate potential spaces to eval len
-  if (!nchar(string) %% 2 == 0)
-    stop("argument 'string' must have an even number of characters")
+  if (!is.hex(string))
+    stop("argument 'string' has invalid hex characters or lenght")
 
-  if(grepl("[^0-9A-Fa-f]", string))
-    stop("argument 'string' has invalid hex characters")
-
-  string <- strsplit(gsub('(.{2})', '\\1 ', string), " ", fixed=TRUE)[[1]]
+  string <- strsplit(gsub('(.{2})', '\\1 ', gsub(" ", "", string, fixed = TRUE)), " ", fixed=TRUE)[[1]]
   return(as.raw(strtoi(string, 16L)))
 }
