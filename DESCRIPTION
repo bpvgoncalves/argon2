@@ -34,4 +34,4 @@ Config/testthat/edition: 3
 Copyright: See inst/COPYRIGHTS for files in src/argon2.
 Encoding: UTF-8
 NeedsCompilation: yes
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1

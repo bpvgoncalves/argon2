@@ -14,6 +14,5 @@
 #'
 #' @useDynLib argon2 R_argon2_hash R_argon2_verify R_gen_nonce R_blake2b
 #'
-#' @docType package
 #' @keywords package
-NULL
+"_PACKAGE"

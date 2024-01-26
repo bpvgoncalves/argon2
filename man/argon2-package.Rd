@@ -2,6 +2,7 @@
 % Please edit documentation in R/argon2-package.r
 \docType{package}
 \name{argon2-package}
+\alias{argon2}
 \alias{argon2-package}
 \title{argon2}
 \description{
@@ -14,6 +15,14 @@ similar R packages, see sodium and bcrypt.
 }
 \references{
 Project URL: \url{https://github.com/wrathematics/argon2}
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/wrathematics/argon2}
+  \item Report bugs at \url{https://github.com/wrathematics/argon2/issues}
+}
+
 }
 \author{
 Drew Schmidt
