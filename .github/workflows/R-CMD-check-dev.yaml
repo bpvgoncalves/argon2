@@ -4,7 +4,7 @@ on:
   push:
     branches: [develop]
 
-name: R-CMD-check
+name: R-CMD-check-dev
 
 jobs:
   R-CMD-check:
