@@ -78,7 +78,7 @@ SEXP R_blake2b(SEXP in_, SEXP key_, SEXP len_)
   retlen = *INTEGER(len_);
 
   if (keylen > retlen)
-    error("'key' must have no more than %d elements\n", retlen);
+    error("'key' must have no more than %zu elements\n", retlen);
 
   PROTECT(ret = allocVector(RAWSXP, retlen));
   uchar_t *const hash = RAW(ret);

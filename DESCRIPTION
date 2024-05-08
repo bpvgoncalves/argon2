@@ -1,7 +1,7 @@
 Type: Package
 Package: argon2
 Title: Secure Password Hashing
-Version: 0.7.1.9002
+Version: 0.7.1.9003
 Authors@R: c(
     person("Drew", 
            "Schmidt", 
