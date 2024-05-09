@@ -42,7 +42,7 @@ SEXP R_argon2_hasher(SEXP pass_, SEXP nonce_, SEXP type, SEXP iterations,
 
   const int saltlen = length(nonce_);
   uint8_t salt[saltlen];
-  for (size_t i=0; i<saltlen; i++)
+  for (int i=0; i<saltlen; i++)
     salt[i] = RAW(nonce_)[i];
 
   size_t hashlen = INT(len);
