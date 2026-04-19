@@ -32,7 +32,7 @@ raw_as_char <- function(raw, upper=TRUE, spaces=FALSE)
   check.is.flag(upper)
   check.is.flag(spaces)
 
-  if (spaces) sep = " " else sep = ""
+  if (spaces) sep <- " " else sep <- ""
   ret <- paste(raw, collapse = sep)
   if (upper) ret <- toupper(ret)
 

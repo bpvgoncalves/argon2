@@ -1,6 +1,16 @@
+# argon2 (development version)
+#### New features
+* Added `char_as_raw` to convert a string of hexadecimal encoded values to raw.
+
+#### Bug fixes
+* A string of hex encoded bytes can now correctly be used as nonce on `argon2_hash` and 
+`argon2_encode`.
+
+
 # argon2 0.7.1
 #### Miscellaneous
 * Trying to fix compilation issues in Windows.
+
 
 # argon2 0.7.0
 #### New features

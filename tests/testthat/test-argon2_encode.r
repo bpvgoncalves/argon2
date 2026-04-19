@@ -32,6 +32,11 @@ test_that("Argon2_i password encoding works", {
   expect_true(argon2_verify(hash, pass))
   expect_false(argon2_verify(hash, "wrong_password"))
 
+  n <- "0123456789ABCDEF0123456789ABCDEF"
+  hash <- argon2_encode(pass, n, type="i", iterations=5, memory=4, threads=2)
+  expect_true(inherits(hash, "argon2.encoded"))
+  expect_true(argon2_verify(hash, pass))
+  expect_false(argon2_verify(hash, "wrong_password"))
 })
 
 test_that("Argon2_d password encoding works", {
@@ -62,6 +67,12 @@ test_that("Argon2_d password encoding works", {
   expect_false(argon2_verify(hash, "wrong_password"))
 
   hash <- argon2_encode(pass, 8L, type="d", iterations=5, memory=4, threads=2)
+  expect_true(inherits(hash, "argon2.encoded"))
+  expect_true(argon2_verify(hash, pass))
+  expect_false(argon2_verify(hash, "wrong_password"))
+
+  n <- "0123456789ABCDEF0123456789ABCDEF"
+  hash <- argon2_encode(pass, n, type="d", iterations=5, memory=4, threads=2)
   expect_true(inherits(hash, "argon2.encoded"))
   expect_true(argon2_verify(hash, pass))
   expect_false(argon2_verify(hash, "wrong_password"))
@@ -99,6 +110,11 @@ test_that("Argon2_id password encoding works", {
   expect_true(argon2_verify(hash, pass))
   expect_false(argon2_verify(hash, "wrong_password"))
 
+  n <- "0123456789ABCDEF0123456789ABCDEF"
+  hash <- argon2_encode(pass, n, type="id", iterations=5, memory=4, threads=2)
+  expect_true(inherits(hash, "argon2.encoded"))
+  expect_true(argon2_verify(hash, pass))
+  expect_false(argon2_verify(hash, "wrong_password"))
 })
 
 known_good <- c("Argon2 Encoded Hash:",
@@ -123,7 +139,9 @@ test_that("Wrong parameters' circuit breakers work", {
   expect_error(argon2_encode(pass, type="i", iterations=1, memory=8, threads=2^25))
 
   expect_error(argon2_encode(1234, type="i", iterations=1, memory=8, threads=1))
+
   expect_error(argon2_encode("1234", 1234, type="i", iterations=1, memory=8, threads=1))
+  expect_error(argon2_encode(pass, nonce=2L, type="x", iterations=1, memory=1, threads=1))
   expect_warning(argon2_encode(pass, 1234L, type="i", iterations=1, memory=8, threads=1))
 
 

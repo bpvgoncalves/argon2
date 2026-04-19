@@ -9,7 +9,7 @@ extern SEXP R_argon2_hash(SEXP pass_, SEXP type_, SEXP iterations, SEXP space, S
 extern SEXP R_argon2_hasher(SEXP pass_, SEXP nonce_, SEXP type, SEXP iterations, SEXP space, SEXP nthreads, SEXP len);
 extern SEXP R_argon2_encoder(SEXP pass_, SEXP nonce_, SEXP type, SEXP iterations, SEXP space, SEXP nthreads, SEXP len);
 extern SEXP R_argon2_verify(SEXP hash_, SEXP pass_);
-extern SEXP R_blake2b(SEXP in_, SEXP key_);
+extern SEXP R_blake2b(SEXP in_, SEXP key_, SEXP len_);
 extern SEXP R_gen_nonce(SEXP len_);
 
 static const R_CallMethodDef CallEntries[] = {

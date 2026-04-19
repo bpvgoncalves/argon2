@@ -28,6 +28,15 @@ is.negative <- function(x)
   x < 0
 }
 
+is.hex <- function(x)
+{
+  if(!is.string(x)) {
+    return(FALSE)
+  } else {
+    x <- gsub(" ", "", x, fixed = TRUE) # eliminate potential spaces to eval len
+    return((nchar(x) %% 2 == 0) && (!grepl("[^0-9A-Fa-f]", x)))
+  }
+}
 
 
 check.is.posint <- function(x)
@@ -37,7 +46,7 @@ check.is.posint <- function(x)
     nm <- deparse(substitute(x))
     stop(paste0("argument '", nm, "' must be a positive integer"), call.=FALSE)
   }
-  
+
   invisible(TRUE)
 }
 
@@ -48,7 +57,7 @@ check.is.flag <- function(x)
     nm <- deparse(substitute(x))
     stop(paste0("argument '", nm, "' must be TRUE or FALSE"), call.=FALSE)
   }
-  
+
   invisible(TRUE)
 }
 
@@ -59,7 +68,7 @@ check.is.string <- function(x)
     nm <- deparse(substitute(x))
     stop(paste0("argument '", nm, "' must be a single string"), call.=FALSE)
   }
-  
+
 	invisible(TRUE)
 }
 
@@ -70,6 +79,6 @@ check.is.string.or.null <- function(x)
     nm <- deparse(substitute(x))
     stop(paste0("argument '", nm, "' must be a single string or NULL"), call.=FALSE)
   }
-  
+
   invisible(TRUE)
 }
