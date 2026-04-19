@@ -139,7 +139,9 @@ test_that("Wrong parameters' circuit breakers work", {
   expect_error(argon2_encode(pass, type="i", iterations=1, memory=8, threads=2^25))
 
   expect_error(argon2_encode(1234, type="i", iterations=1, memory=8, threads=1))
+
   expect_error(argon2_encode("1234", 1234, type="i", iterations=1, memory=8, threads=1))
+  expect_error(argon2_encode(pass, nonce=2L, type="x", iterations=1, memory=1, threads=1))
   expect_warning(argon2_encode(pass, 1234L, type="i", iterations=1, memory=8, threads=1))
 
 
